@@ -11,7 +11,7 @@ public class RegisterTeacher {
 
    public void register(Scanner sc) {
       Validations val = new Validations();
-      String continueRegister = "";
+      char continueRegister = ' ';
       
       //registrando professores (quantidade indeterminada)
       do {
@@ -119,10 +119,9 @@ public class RegisterTeacher {
 
           //perguntando se deseja cadastrar outro professor
           System.out.print("Do you want to register another teacher? (y/n): ");
-          sc.nextLine();
-          continueRegister = sc.nextLine();
+          continueRegister = sc.next().charAt(0);
 
-      } while(continueRegister.equalsIgnoreCase("y"));
+      } while(continueRegister == 'y' || continueRegister == 'Y');
 
       //mostrando o resultado
       System.out.println(val.toString());
