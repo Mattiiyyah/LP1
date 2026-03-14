@@ -1,0 +1,20 @@
+Faça um programa que receba as inscrições de professores para um concurso, este programa funcionará da seguinte forma:
+Os dados dos professores serão:
+- Nome
+- idade
+- tempo de experiência
+- área (1 - exatas, 2 - biologicas, 3 - outras)
+
+Crie uma classe chamada Validacao para calcular a pontuação dos professores, que tenha os métodos:
+
+calcularPontuacao(int idade, int tempo, int area)
+   - a pontuação é calculada da seguinte forma: 
+	-- a idade será /2, somada ao tempo * 3 e somada à área, sendo que,
+	-- para cada área será atribuída a pontuação: 1 -> 5 pontos, 2 -> 10 pontos, 3 -> 15 pontos
+
+crie os atributos:
+int pontuação[] = new int[3];  // armazenará a pontuação dos 3 primeiros candidatos
+String candidatos[] = new String[3]; // armazenará os nomes dos 3 primeiros candidatos
+int contadorCandidatos = 0; //armazenará quantos candidatos foram inscritos
+
+Crie a classe que cadastre uma quantidade indeterminada de candidatos, validando cada entrada de dados, ou seja, nome não pode ter menos de 3 caracteres, idade não pode ser menor de 18, tempo de experiência não pode ser menor que zero, e área deve ser entre 1 e 3.
