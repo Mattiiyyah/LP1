@@ -9,18 +9,18 @@ public class RegisterTeacher {
    private int area = 0;
    private int timeExperience = 0;
 
-   public void register(Scanner sc) {
+   public void register(Scanner reader) {
       Validations val = new Validations();
       char continueRegister = ' ';
       
       //registrando professores (quantidade indeterminada)
       do {
-         sc.nextLine();
+         reader.nextLine();
          //validação nome
          do {
             try {
                 System.out.print("\nWhat is the professor's name?: ");
-                name = sc.nextLine();
+                name = reader.nextLine();
 
                 if(name.length() < 3)
                     throw new Exception("The name must be at least 3 characters long.");
@@ -36,7 +36,7 @@ public class RegisterTeacher {
          do {
            try{
               System.out.print("\nHow old is the teacher?: ");
-              age = sc.nextInt();
+              age = reader.nextInt();
 
               if(age < 18)
                 throw new Exception("The minimum age is 18 years.");
@@ -45,7 +45,7 @@ public class RegisterTeacher {
                System.out.println("Error: " + e.getMessage());
                System.out.println("####################################################");
                System.out.print("\nTry again\n");
-               sc.nextLine();
+               reader.nextLine();
                age = -1;
            }
          } while (age < 18);
@@ -54,7 +54,7 @@ public class RegisterTeacher {
          do {
             try{
               System.out.print("\nHow many years of experience does the teacher have?: ");
-              timeExperience = sc.nextInt();
+              timeExperience = reader.nextInt();
 
               if((age >= 18 && age <= 30) && timeExperience >= 5) 
                  throw new Exception("This teacher is at the beginning of his professional career; there's no way he could have more than 5 years of experience.");
@@ -69,7 +69,7 @@ public class RegisterTeacher {
                System.out.println("Error: " + e.getMessage());
                System.out.println("####################################################");
                System.out.print("\nTry again\n");
-               sc.nextLine();
+               reader.nextLine();
                timeExperience = -1;
            }
 
@@ -86,7 +86,7 @@ public class RegisterTeacher {
                 System.out.println("3- Other");
                 System.out.println("-------------------");
                 System.out.print("\nEnter a number here: ");
-                area = sc.nextInt();
+                area = reader.nextInt();
 
                 if(area <= 0 || area > 3) 
                     throw new Exception("The teacher's chosen area must be between 1 and 3.");
@@ -97,7 +97,7 @@ public class RegisterTeacher {
                System.out.println("Error: " + e.getMessage());
                System.out.println("####################################################");
                System.out.print("\nTry again\n");
-               sc.nextLine();
+               reader.nextLine();
                area = -1;
             }
 
@@ -119,7 +119,7 @@ public class RegisterTeacher {
 
           //perguntando se deseja cadastrar outro professor
           System.out.print("Do you want to register another teacher? (y/n): ");
-          continueRegister = sc.next().charAt(0);
+          continueRegister = reader.next().charAt(0);
 
       } while(continueRegister == 'y' || continueRegister == 'Y');
 
