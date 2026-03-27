@@ -56,6 +56,31 @@ public class Validations {
         return score;
     }
 
+    public void registerCandidateInRank(String name, int score) {
+        this.candidateCounter++; 
+
+        // Lógica de top 3
+        if (this.candidateCounter <= 3) {
+            this.scores[this.candidateCounter - 1] = score;
+            this.candidates[this.candidateCounter - 1] = name;
+        } else {
+            int smaller = this.scores[0];
+            int smallerIndex = 0;
+            
+            for(int i = 0; i < this.scores.length; i++) {
+                if(this.scores[i] < smaller) {
+                    smaller = this.scores[i];
+                    smallerIndex = i;
+                }
+            }
+
+            if(score > smaller) {
+                this.scores[smallerIndex] = score;
+                this.candidates[smallerIndex] = name;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         String result = "\n========== Top 3 Candidates ==========\n";

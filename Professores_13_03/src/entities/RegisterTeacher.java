@@ -110,12 +110,9 @@ public class RegisterTeacher {
           System.out.println("Area: " + areaTeacher(area));
           System.out.println("=========================================\n");
 
-          int counter = val.getCandidateCounter();
-          val.setCandidateCounter(counter + 1);
-
           //chamada da classe validations para pontuação
           int score = val.calculateScore(age, timeExperience, area);
-          placedTeachers(score, val, name);
+          val.registerCandidateInRank(name, score);
 
           //perguntando se deseja cadastrar outro professor
           System.out.print("Do you want to register another teacher? (y/n): ");
@@ -145,41 +142,4 @@ public class RegisterTeacher {
        return textArea;
    }
 
-   //verificando professores com 3 maiores pontuações
-   public void placedTeachers(int score, Validations val, String name) {
-      int[] scores = val.getScores();
-      String[] names = val.getCandidates();
-
-      if(val.getCandidateCounter() <= 3) {
-         if(val.getCandidateCounter() == 1) {
-            scores[0] = score;
-            names[0] = name;
-         }
-
-         if(val.getCandidateCounter() == 2) {   
-            scores[1] = score;
-            names[1] = name;
-         }
-
-         if(val.getCandidateCounter() == 3) {   
-            scores[2] = score;
-            names[2] = name;
-         }
-      } else {
-         int smaller = scores[0];
-         int smallerIndex = 0;
-         
-         for(int i = 0; i < scores.length; i++) {
-            if(scores[i] < smaller) {
-               smaller = scores[i];
-               smallerIndex = i;
-            }
-         }
-
-         if(score > smaller) {
-            scores[smallerIndex] = score;
-            names[smallerIndex] = name;
-         }
-      }
-   }
 }
