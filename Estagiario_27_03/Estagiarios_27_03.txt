@@ -1,0 +1,14 @@
+Crie uma classe chamada Estagiário com os seguintes atributos:
+Nome, email, curso, médiageral, idade, sexo
+
+Crie os construtores da classe
+Crie os setters e getters
+
+Faça um programa que cadastre uma quantidade indeterminada de estagiários
+para uma vaga de emprego, depois demonstre o seguinte menu: 
+
+1 - mostrar todos os candidatos maiores do que uma idade informada
+2 - mostrar todos os candidatos com media geral acima de 7
+3 - mostrar total de candidatos por sexo
+4 - mostrar todos os nomes e idades dos alunos do curso de ADS
+5 - Sair
