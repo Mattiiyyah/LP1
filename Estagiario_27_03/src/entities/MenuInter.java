@@ -91,7 +91,9 @@ public class MenuInter {
                     break;
 
                 default:
+                    System.out.println("#####################################");
                     System.out.println("\nOpção inválida! Escolha de 1 a 5.");
+                    System.out.println("#####################################");
                     break;
             }
 
