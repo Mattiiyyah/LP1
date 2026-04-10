@@ -5,30 +5,30 @@ import java.util.Scanner;
 
 public class MenuInter {
     public void menu(Scanner scan, List<Inter> interList) {
-        System.out.println("\n============= MENU DE CONSULTAS =============");
-        System.out.println("1 - Mostrar candidatos maiores que uma idade informada");
-        System.out.println("2 - Mostrar candidatos com média geral acima de 7");
-        System.out.println("3 - Mostrar total de candidatos por sexo");
-        System.out.println("4 - Mostrar nomes e idades dos alunos do curso de ADS");
-        System.out.println("5 - Sair");
-        System.out.println("==============================================");
+        DisplayMenu displayMenu = new DisplayMenu();
+        displayMenu.showMenu();
         String continueMenu = "";
         int choose = 0;
-        
+
         do {
+            if (continueMenu.equalsIgnoreCase("S")) {
+                displayMenu.showMenu();
+            }
+
             System.out.print("\nEscolha uma opção: ");
             choose = scan.nextInt();
 
             switch (choose) {
+
                 // Mostrar candidatos maiores que uma idade informada
                 case 1:
                     System.out.print("\nDigite a idade para filtrar: ");
                     int age = scan.nextInt();
-                    
+
                     System.out.println("\n========== Candidatos com idade maior que " + age + " ==========");
                     boolean foundAge = false;
                     for (Inter i : interList) {
-                        if(i.getAge() > age) {
+                        if (i.getAge() > age) {
                             System.out.println(i);
                             foundAge = true;
                         }
@@ -39,11 +39,11 @@ public class MenuInter {
                     break;
 
                 // Mostrar candidatos com média geral acima de 7
-                case 2:                    
+                case 2:
                     System.out.println("\n========== Candidatos com média acima de 7 ==========");
                     boolean foundAverage = false;
-                    for(Inter i : interList) {
-                        if(i.getGenerealAverage() > 7.0) {
+                    for (Inter i : interList) {
+                        if (i.getGenerealAverage() > 7.0) {
                             System.out.println(i);
                             foundAverage = true;
                         }
@@ -52,16 +52,16 @@ public class MenuInter {
                         System.out.println("Não há ninguém com a média maior que 7");
                     }
                     break;
-                
+
                 // Mostrar total de candidatos por sexo
                 case 3:
                     int contM = 0;
                     int contF = 0;
 
-                    for(Inter i : interList) {
-                        if(i.getGender().equalsIgnoreCase("F")) 
+                    for (Inter i : interList) {
+                        if (i.getGender().equalsIgnoreCase("F"))
                             contF++;
-                        if(i.getGender().equalsIgnoreCase("M"))
+                        if (i.getGender().equalsIgnoreCase("M"))
                             contM++;
                     }
 
@@ -72,11 +72,11 @@ public class MenuInter {
                     break;
 
                 // Mostrar nomes e idades dos alunos do curso de ADS
-                case 4: 
+                case 4:
                     System.out.println("\n========== Alunos do curso de ADS ==========");
                     boolean foundADS = false;
-                    for(Inter i : interList) {
-                        if(i.getCurso().equalsIgnoreCase("ADS")) {
+                    for (Inter i : interList) {
+                        if (i.getCurso().equalsIgnoreCase("ADS")) {
                             System.out.println("Nome: " + i.getName() + " | Idade: " + i.getAge());
                             foundADS = true;
                         }
@@ -89,16 +89,16 @@ public class MenuInter {
                 case 5:
                     System.out.println("\nEncerrando o programa... Até logo!");
                     break;
-            
+
                 default:
                     System.out.println("\nOpção inválida! Escolha de 1 a 5.");
                     break;
             }
-            
-            if(choose != 5) {
-              System.out.println("\nDeseja consultar o menu novamente (S/N)");
-              continueMenu = scan.next();
+
+            if (choose != 5) {
+                System.out.println("\nDeseja consultar o menu novamente (S/N)");
+                continueMenu = scan.next();
             }
-        } while(continueMenu.equalsIgnoreCase("S") && choose != 5);
+        } while (continueMenu.equalsIgnoreCase("S") && choose != 5);
     }
 }
