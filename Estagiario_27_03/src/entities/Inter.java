@@ -25,48 +25,24 @@ public class Inter {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCurso() {
         return curso;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
     public Double getGenerealAverage() {
         return generealAverage;
-    }
-
-    public void setGenerealAverage(Double generealAverage) {
-        this.generealAverage = generealAverage;
     }
 
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getGender() {
         return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     @Override
