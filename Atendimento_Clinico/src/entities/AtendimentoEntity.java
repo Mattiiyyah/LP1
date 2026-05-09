@@ -115,6 +115,18 @@ public class AtendimentoEntity {
         this.funcionario = funcionario;
     }
 
+    public ArrayList<MedicoAtendimento> getMedicos() {
+        return medicos;
+    }
+
+    public ArrayList<ProcedimentoAtendimento> getProcedimentos() {
+        return procedimentos;
+    }
+
+    public ArrayList<ExameAtendimento> getExames() {
+        return exames;
+    }
+
     public void adicionarExame(ExameAtendimento exame) {
         exames.add(exame);
     }

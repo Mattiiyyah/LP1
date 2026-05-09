@@ -1,0 +1,155 @@
+{
+  "admin": {
+    "nome": "Luiz",
+    "cpf": "4444",
+    "dataCadastro": "2026-05-11",
+    "status": "ativo"
+  },
+  "atendimentos": [
+    {
+      "id": 1,
+      "dataAbertura": "2026-05-11",
+      "dataAlta": "2026-05-13",
+      "convenio": "Austa Clinica",
+      "observacaoEntrada": "Osso do dedo quebrado",
+      "observacaoAlta": "Ficar com dedo enfachado por 2 semanas",
+      "paciente": {
+        "nome": "Roberto",
+        "cpf": "1111",
+        "status": "ativo"
+      },
+      "funcionario": {
+        "nome": "José",
+        "cpf": "5555",
+        "setor": "Bloco - A"
+      },
+      "medicos": [
+        {
+          "nomeMedico": "Dra. Marilene",
+          "crm": "1.3.2-12",
+          "dataInicio": "2026-05-11",
+          "observacoes": "Realizamento sobre fratura de Paciente",
+          "status": "em andamento"
+        }
+      ],
+      "procedimentos": [
+        {
+          "descricao": "Raio X",
+          "observacoes": "Exame de imagem básico",
+          "dataRealizada": "2026-05-11",
+          "resultado": "Realizado com sucesso"
+        }
+      ],
+      "exames": [
+        {
+          "descricao": "Raio X do dedo",
+          "tipo": "Imagem",
+          "dataRealizada": "2026-05-11",
+          "laudo": "Fratura confirmada no dedo indicador",
+          "observacoes": "Paciente encaminhado para imobilização"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "dataAbertura": "2026-05-10",
+      "dataAlta": "2026-05-12",
+      "convenio": "Unimed",
+      "observacaoEntrada": "Dor abdominal intensa",
+      "observacaoAlta": "Repouso e dieta leve por 5 dias",
+      "paciente": {
+        "nome": "Larissa",
+        "cpf": "2222",
+        "status": "ativo"
+      },
+      "funcionario": {
+        "nome": "Maria",
+        "cpf": "6666",
+        "setor": "Bloco - B"
+      },
+      "medicos": [
+        {
+          "nomeMedico": "Dr. Lucas",
+          "crm": "1.2.3-11",
+          "dataInicio": "2026-05-10",
+          "observacoes": "Avaliação clínica geral do paciente",
+          "status": "finalizado"
+        }
+      ],
+      "procedimentos": [
+        {
+          "descricao": "Hemograma",
+          "observacoes": "Exame de sangue completo",
+          "dataRealizada": "2026-05-10",
+          "resultado": "Hemograma dentro dos valores normais"
+        }
+      ],
+      "exames": [
+        {
+          "descricao": "Hemograma Completo",
+          "tipo": "Sangue",
+          "dataRealizada": "2026-05-10",
+          "laudo": "Resultados sem alterações significativas",
+          "observacoes": "Paciente liberada com orientações"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "dataAbertura": "2026-05-12",
+      "dataAlta": "2026-05-14",
+      "convenio": "SulAmérica",
+      "observacaoEntrada": "Entorse no tornozelo esquerdo",
+      "observacaoAlta": "Uso de muletas por 10 dias",
+      "paciente": {
+        "nome": "Carlos",
+        "cpf": "3333",
+        "status": "ativo"
+      },
+      "funcionario": {
+        "nome": "José",
+        "cpf": "5555",
+        "setor": "Bloco - A"
+      },
+      "medicos": [
+        {
+          "nomeMedico": "Dr. Lucas",
+          "crm": "1.2.3-11",
+          "dataInicio": "2026-05-12",
+          "observacoes": "Avaliação ortopédica do tornozelo",
+          "status": "em andamento"
+        },
+        {
+          "nomeMedico": "Dra. Marilene",
+          "crm": "1.3.2-12",
+          "dataInicio": "2026-05-13",
+          "observacoes": "Reavaliação pós imobilização",
+          "status": "finalizado"
+        }
+      ],
+      "procedimentos": [
+        {
+          "descricao": "Raio X",
+          "observacoes": "Exame de imagem básico",
+          "dataRealizada": "2026-05-12",
+          "resultado": "Raio X sem fratura, apenas entorse"
+        },
+        {
+          "descricao": "Hemograma",
+          "observacoes": "Exame de sangue completo",
+          "dataRealizada": "2026-05-12",
+          "resultado": "Hemograma de rotina sem alterações"
+        }
+      ],
+      "exames": [
+        {
+          "descricao": "Raio X do dedo",
+          "tipo": "Imagem",
+          "dataRealizada": "2026-05-12",
+          "laudo": "Sem fratura identificada",
+          "observacoes": "Entorse grau 2 confirmado"
+        }
+      ]
+    }
+  ]
+}

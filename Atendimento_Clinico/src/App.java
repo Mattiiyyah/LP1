@@ -1,5 +1,11 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.io.FileWriter;
+import java.io.File;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import entities.AdminEntity;
 import entities.AtendimentoEntity;
@@ -147,5 +153,111 @@ public class App {
         System.out.println(atendimento2);   
         System.out.println(atendimento3);
 
+        // ====== EXPORTAÇÃO JSON PARA O DASHBOARD WEB ======
+        try {
+            Map<String, Object> dados = new LinkedHashMap<>();
+
+            // Admin
+            Map<String, Object> adminMap = new LinkedHashMap<>();
+            adminMap.put("nome", admin.getNome());
+            adminMap.put("cpf", admin.getCpf());
+            adminMap.put("dataCadastro", admin.getDataCadastro().toString());
+            adminMap.put("status", admin.getStatus().getDescricao());
+            dados.put("admin", adminMap);
+
+            // Atendimentos
+            ArrayList<Map<String, Object>> atendimentosList = new ArrayList<>();
+
+            // Helper: converter cada atendimento
+            AtendimentoEntity[] todosAtendimentos = { atendimento, atendimento2, atendimento3 };
+            for (AtendimentoEntity at : todosAtendimentos) {
+                atendimentosList.add(converterAtendimento(at));
+            }
+
+            dados.put("atendimentos", atendimentosList);
+
+            // Escrever JSON
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(dados);
+
+            File webDir = new File("web");
+            if (!webDir.exists()) webDir.mkdirs();
+
+            FileWriter writer = new FileWriter("web/dados.json");
+            writer.write(json);
+            writer.close();
+
+            System.out.println("\n✅ Arquivo web/dados.json gerado com sucesso!");
+            System.out.println("   Abra web/index.html no navegador para visualizar o dashboard.");
+
+        } catch (Exception e) {
+            System.out.println("\n❌ Erro ao gerar JSON: " + e.getMessage());
+        }
+
+    }
+
+    // Método auxiliar para converter AtendimentoEntity em Map
+    private static Map<String, Object> converterAtendimento(AtendimentoEntity at) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("id", at.getId());
+        map.put("dataAbertura", at.getDataAbertura().toString());
+        map.put("dataAlta", at.getDataAlta() != null ? at.getDataAlta().toString() : null);
+        map.put("convenio", at.getConvenio());
+        map.put("observacaoEntrada", at.getObservacaoEntrada());
+        map.put("observacaoAlta", at.getObservacaoAlta());
+
+        // Paciente
+        Map<String, Object> pacMap = new LinkedHashMap<>();
+        pacMap.put("nome", at.getPessoa().getNome());
+        pacMap.put("cpf", at.getPessoa().getCpf());
+        pacMap.put("status", at.getPessoa().getStatus().getDescricao());
+        map.put("paciente", pacMap);
+
+        // Funcionário
+        Map<String, Object> funcMap = new LinkedHashMap<>();
+        funcMap.put("nome", at.getFuncionario().getNome());
+        funcMap.put("cpf", at.getFuncionario().getCpf());
+        funcMap.put("setor", at.getFuncionario().getSetor());
+        map.put("funcionario", funcMap);
+
+        // Médicos
+        ArrayList<Map<String, Object>> medicosList = new ArrayList<>();
+        for (MedicoAtendimento ma : at.getMedicos()) {
+            Map<String, Object> mMap = new LinkedHashMap<>();
+            mMap.put("nomeMedico", ma.getMedico().getNome());
+            mMap.put("crm", ma.getMedico().getCrm());
+            mMap.put("dataInicio", ma.getDataInico().toString());
+            mMap.put("observacoes", ma.getObservacoes());
+            mMap.put("status", ma.getStatus());
+            medicosList.add(mMap);
+        }
+        map.put("medicos", medicosList);
+
+        // Procedimentos
+        ArrayList<Map<String, Object>> procsList = new ArrayList<>();
+        for (ProcedimentoAtendimento pa : at.getProcedimentos()) {
+            Map<String, Object> pMap = new LinkedHashMap<>();
+            pMap.put("descricao", pa.getProcedimento().getDescricao());
+            pMap.put("observacoes", pa.getProcedimento().getObservacoes());
+            pMap.put("dataRealizada", pa.getDataHoraRealizada().toString());
+            pMap.put("resultado", pa.getResultado());
+            procsList.add(pMap);
+        }
+        map.put("procedimentos", procsList);
+
+        // Exames
+        ArrayList<Map<String, Object>> examesList = new ArrayList<>();
+        for (ExameAtendimento ea : at.getExames()) {
+            Map<String, Object> eMap = new LinkedHashMap<>();
+            eMap.put("descricao", ea.getExame().getDescricao());
+            eMap.put("tipo", ea.getExame().getTipo());
+            eMap.put("dataRealizada", ea.getDataHoraRealizada().toString());
+            eMap.put("laudo", ea.getLaudo());
+            eMap.put("observacoes", ea.getObservacoes());
+            examesList.add(eMap);
+        }
+        map.put("exames", examesList);
+
+        return map;
     }
 }
