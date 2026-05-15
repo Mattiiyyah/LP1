@@ -14,7 +14,7 @@ import entities.ExameEntity;
 import entities.FuncionarioEntity;
 import entities.MedicoAtendimento;
 import entities.MedicoEntity;
-import entities.PessoaEntity;
+import entities.PacienteEntity;
 import entities.ProcedimentoAtendimento;
 import entities.ProcedimentoEntity;
 import entities.StatusEntity;
@@ -24,9 +24,9 @@ public class App {
         StatusEntity status = new StatusEntity(1, "ativo");
 
         //Criando o paciente
-        PessoaEntity paciente1 = new PessoaEntity("1111", "Roberto", "123", status);
-        PessoaEntity paciente2 = new PessoaEntity("2222", "Larissa", "321", status);
-        PessoaEntity paciente3 = new PessoaEntity("3333", "Carlos", "213", status);
+        PacienteEntity paciente1 = new PacienteEntity("1111", "Roberto", "123", status, "Austa Clinica");
+        PacienteEntity paciente2 = new PacienteEntity("2222", "Larissa", "321", status, "Unimed");
+        PacienteEntity paciente3 = new PacienteEntity("3333", "Carlos", "213", status, "SulAmérica");
 
         //Criando o administrador
         AdminEntity admin = new AdminEntity("4444", "Luiz", "123", status, LocalDate.now().plusDays(2));
@@ -146,12 +146,29 @@ public class App {
         System.out.println("|   CPF:               " + admin.getCpf());
         System.out.println("|   Data Cadastro:     " + admin.getDataCadastro());
         System.out.println("|   Status:            " + admin.getStatus().getDescricao());
+        System.out.println("|   Status Detalhado:  " + admin.mostrarStatus());
+        System.out.println("+================================================+");
+        System.out.println();
+
+        // ====== DEMONSTRAÇÃO DO mostrarStatus() - Polimorfismo ======
+        System.out.println("+================================================+");
+        System.out.println("|         DEMONSTRAÇÃO: mostrarStatus()           |");
+        System.out.println("+================================================+");
+        System.out.println("| " + paciente1.mostrarStatus());
+        System.out.println("| " + paciente2.mostrarStatus());
+        System.out.println("| " + paciente3.mostrarStatus());
+        System.out.println("| " + admin.mostrarStatus());
+        System.out.println("| " + funcionario1.mostrarStatus());
+        System.out.println("| " + funcionario2.mostrarStatus());
+        System.out.println("| " + medico1.mostrarStatus());
+        System.out.println("| " + medico2.mostrarStatus());
         System.out.println("+================================================+");
         System.out.println();
 
         System.out.println(atendimento);
         System.out.println(atendimento2);   
         System.out.println(atendimento3);
+
 
         // ====== EXPORTAÇÃO JSON PARA O DASHBOARD WEB ======
         try {
@@ -163,6 +180,7 @@ public class App {
             adminMap.put("cpf", admin.getCpf());
             adminMap.put("dataCadastro", admin.getDataCadastro().toString());
             adminMap.put("status", admin.getStatus().getDescricao());
+            adminMap.put("statusDetalhado", admin.mostrarStatus());
             dados.put("admin", adminMap);
 
             // Atendimentos
@@ -210,14 +228,18 @@ public class App {
         Map<String, Object> pacMap = new LinkedHashMap<>();
         pacMap.put("nome", at.getPessoa().getNome());
         pacMap.put("cpf", at.getPessoa().getCpf());
+        pacMap.put("planoSaude", at.getPessoa().getPlanoSaude());
         pacMap.put("status", at.getPessoa().getStatus().getDescricao());
+        pacMap.put("statusDetalhado", at.getPessoa().mostrarStatus());
         map.put("paciente", pacMap);
+
 
         // Funcionário
         Map<String, Object> funcMap = new LinkedHashMap<>();
         funcMap.put("nome", at.getFuncionario().getNome());
         funcMap.put("cpf", at.getFuncionario().getCpf());
         funcMap.put("setor", at.getFuncionario().getSetor());
+        funcMap.put("statusDetalhado", at.getFuncionario().mostrarStatus());
         map.put("funcionario", funcMap);
 
         // Médicos
@@ -229,6 +251,7 @@ public class App {
             mMap.put("dataInicio", ma.getDataInico().toString());
             mMap.put("observacoes", ma.getObservacoes());
             mMap.put("status", ma.getStatus());
+            mMap.put("statusDetalhado", ma.getMedico().mostrarStatus());
             medicosList.add(mMap);
         }
         map.put("medicos", medicosList);

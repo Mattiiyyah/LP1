@@ -1,6 +1,6 @@
 package entities;
 
-public class PessoaEntity {
+public abstract class PessoaEntity {
     
     private String cpf;
     private String nome;
@@ -52,5 +52,7 @@ public class PessoaEntity {
     public void setStatus(StatusEntity status) {
         this.status = status;
     }
+
+    public abstract String mostrarStatus();
 
 }

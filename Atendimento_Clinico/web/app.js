@@ -87,6 +87,10 @@ function renderAdmin(admin) {
             <span class="label">Status:</span>
             <span class="badge badge-active">${admin.status}</span>
           </div>
+          <div class="admin-detail" style="width: 100%; margin-top: 0.5rem; opacity: 0.8">
+            <span class="label">Status Detalhado:</span>
+            <span class="value" style="font-style: italic; color: var(--accent-cyan)">${admin.statusDetalhado}</span>
+          </div>
         </div>
       </div>
     </div>`;
@@ -203,6 +207,7 @@ function renderPaciente(p) {
         <div class="info-field"><span class="field-label">Nome</span><span class="field-value">${p.nome}</span></div>
         <div class="info-field"><span class="field-label">CPF</span><span class="field-value">${p.cpf}</span></div>
         <div class="info-field"><span class="field-label">Status</span><span class="badge badge-active">${p.status}</span></div>
+        <div class="info-field" style="width: 100%"><span class="field-label">Status Detalhado</span><span class="field-value" style="font-style: italic; color: var(--accent-blue-light)">${p.statusDetalhado}</span></div>
       </div>
     </div>`;
 }
@@ -215,6 +220,7 @@ function renderFuncionario(f) {
         <div class="info-field"><span class="field-label">Nome</span><span class="field-value">${f.nome}</span></div>
         <div class="info-field"><span class="field-label">CPF</span><span class="field-value">${f.cpf}</span></div>
         <div class="info-field"><span class="field-label">Setor</span><span class="field-value">${f.setor}</span></div>
+        <div class="info-field" style="width: 100%"><span class="field-label">Status Detalhado</span><span class="field-value" style="font-style: italic; color: var(--accent-blue-light)">${f.statusDetalhado}</span></div>
       </div>
     </div>`;
 }
@@ -233,6 +239,7 @@ function renderMedicos(medicos) {
           <div class="info-field"><span class="field-label">CRM</span><span class="field-value">${m.crm}</span></div>
           <div class="info-field"><span class="field-label">Data</span><span class="field-value">${formatDate(m.dataInicio)}</span></div>
           <div class="info-field"><span class="field-label">Observações</span><span class="field-value">${m.observacoes}</span></div>
+          <div class="info-field" style="width: 100%"><span class="field-label">Status Detalhado</span><span class="field-value" style="font-style: italic; color: var(--accent-blue-light)">${m.statusDetalhado}</span></div>
         </div>
       </div>`;
   }).join('');

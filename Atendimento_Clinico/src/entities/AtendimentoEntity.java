@@ -16,7 +16,7 @@ public class AtendimentoEntity {
     private ArrayList<ProcedimentoAtendimento> procedimentos;
     private ArrayList<ExameAtendimento> exames;
     
-    private PessoaEntity pessoa;
+    private PacienteEntity pessoa;
     private FuncionarioEntity funcionario;
 
 
@@ -30,14 +30,14 @@ public class AtendimentoEntity {
         medicos = new ArrayList<>();
         procedimentos = new ArrayList<>();
         exames = new ArrayList<>();
-        pessoa = new PessoaEntity();
+        pessoa = new PacienteEntity();
         funcionario = new FuncionarioEntity();
     }
 
     public AtendimentoEntity(Integer id, LocalDate dataAbertura, LocalDate dataAlta, String convenio,
             String observacaoEntrada, String observacaoAlta, ArrayList<MedicoAtendimento> atendimentosMedico,
             ArrayList<ProcedimentoAtendimento> atendimentosProcedimento, ArrayList<ExameAtendimento> atendimentosExame,
-            PessoaEntity pessoa, FuncionarioEntity funcionario) {
+            PacienteEntity pessoa, FuncionarioEntity funcionario) {
         this.id = id;
         this.dataAbertura = dataAbertura;
         this.dataAlta = dataAlta;
@@ -99,11 +99,11 @@ public class AtendimentoEntity {
         this.observacaoAlta = observacaoAlta;
     }
 
-    public PessoaEntity getPessoa() {
+    public PacienteEntity getPessoa() {
         return pessoa;
     }
 
-    public void setPessoa(PessoaEntity pessoa) {
+    public void setPessoa(PacienteEntity pessoa) {
         this.pessoa = pessoa;
     }
 
@@ -167,13 +167,17 @@ public class AtendimentoEntity {
         sb.append("| PACIENTE\n");
         sb.append("|   Nome:              ").append(pessoa.getNome()).append("\n");
         sb.append("|   CPF:               ").append(pessoa.getCpf()).append("\n");
+        sb.append("|   Plano de Saúde:    ").append(pessoa.getPlanoSaude()).append("\n");
         sb.append("|   Status:            ").append(pessoa.getStatus().getDescricao()).append("\n");
+        sb.append("|   Status Detalhado:  ").append(pessoa.mostrarStatus()).append("\n");
         sb.append("+------------------------------------------------+\n");
 
         sb.append("| FUNCIONARIO RESPONSAVEL\n");
         sb.append("|   Nome:              ").append(funcionario.getNome()).append("\n");
         sb.append("|   CPF:               ").append(funcionario.getCpf()).append("\n");
         sb.append("|   Setor:             ").append(funcionario.getSetor()).append("\n");
+        sb.append("|   Status:            ").append(funcionario.getStatus().getDescricao()).append("\n");
+        sb.append("|   Status Detalhado:  ").append(funcionario.mostrarStatus()).append("\n");
         sb.append("+------------------------------------------------+\n");
 
         sb.append("| MEDICOS (").append(medicos.size()).append(")\n");
@@ -183,7 +187,9 @@ public class AtendimentoEntity {
             sb.append("|       CRM:           ").append(ma.getMedico().getCrm()).append("\n");
             sb.append("|       Data Inicio:   ").append(ma.getDataInico()).append("\n");
             sb.append("|       Observacoes:   ").append(ma.getObservacoes()).append("\n");
-            sb.append("|       Status:        ").append(ma.getStatus()).append("\n");
+            sb.append("|       Status Atend.: ").append(ma.getStatus()).append("\n");
+            sb.append("|       Status Médico: ").append(ma.getMedico().getStatus().getDescricao()).append("\n");
+            sb.append("|       Detalhado:     ").append(ma.getMedico().mostrarStatus()).append("\n");
             if (i < medicos.size() - 1) sb.append("|\n");
         }
         sb.append("+------------------------------------------------+\n");
